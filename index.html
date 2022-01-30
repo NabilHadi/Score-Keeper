@@ -7,29 +7,41 @@
 		<link rel="stylesheet" href="./style.css" />
 		<title>Score Keeper</title>
 	</head>
-	<body>
-		<h1 id="scoreHeader">
-			<span id="playerOneScore">0</span> to <span id="playerTwoScore">0</span>
-		</h1>
-		<p>Use the buttons below to keep score</p>
-		<div id="selectContainer">
-			<label for="winScoreSelect">Playing to</label>
-			<select name="winScore" id="winScoreSelect">
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-			</select>
-		</div>
-		<div id="buttonsContainer">
-			<button id="playerOneBtn">+1 Player One</button>
-			<button id="playerTwoBtn">+1 Player Two</button>
-			<button id="resetBtn">Reset</button>
+	<body class="flex-center">
+		<div id="main-container">
+			<header>
+				<img
+					src="https://images.unsplash.com/photo-1534158914592-062992fbe900?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3784&q=80"
+					alt="ping pong"
+				/>
+				<h4>Ping Pong Score Keeper</h4>
+			</header>
+			<main>
+				<h1 id="scoreHeader">
+					<span id="playerOneScore">0</span> to
+					<span id="playerTwoScore">0</span>
+				</h1>
+				<p>Use the buttons below to keep score</p>
+				<div id="selectContainer">
+					<label for="winScoreSelect">Playing to</label>
+					<select name="winScore" id="winScoreSelect">
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+					</select>
+				</div>
+			</main>
+			<div id="buttons-container">
+				<button id="playerOneBtn" class="bg-lightgreen">+1 Player One</button>
+				<button id="playerTwoBtn" class="bg-lightblue">+1 Player Two</button>
+				<button id="resetBtn" class="bg-lightred">Reset</button>
+			</div>
 		</div>
 		<script src="./index.js"></script>
 	</body>

@@ -1,0 +1,103 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+img {
+	width: 100%;
+}
+
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bg-lightgreen {
+	background-color: #00d1b2;
+}
+
+.bg-lightblue {
+	background-color: #3298dc;
+}
+
+.bg-lightred {
+	background-color: #f14668;
+}
+
+#main-container {
+	margin-top: 50px;
+}
+
+#main-container header {
+	height: 100%;
+	overflow: auto;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+#main-container header img {
+	display: block;
+	width: 600px;
+	height: 300px;
+}
+
+#main-container header h4 {
+	margin: 10px;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+#main-container main {
+	padding: 20px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+#main-container main h1 {
+	font-size: 2.5rem;
+	margin-bottom: 8px;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+#main-container main p {
+	color: rgba(0, 0, 0, 0.6);
+	margin-bottom: 20px;
+}
+
+#selectContainer label {
+	font-size: 1.6rem;
+	margin-right: 8px;
+	font-weight: 600;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+#selectContainer select {
+	padding: 10px;
+	border-radius: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#buttons-container {
+	display: flex;
+}
+
+#buttons-container button {
+	flex: 1;
+	padding: 15px;
+	font-size: 1.3rem;
+	border: none;
+	border-radius: 2px;
+	color: white;
+	cursor: pointer;
+}
+
+#buttons-container button:hover {
+	opacity: 0.9;
+}
+
+#buttons-container button:active {
+	opacity: 1;
+}
