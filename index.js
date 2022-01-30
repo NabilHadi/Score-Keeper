@@ -1,16 +1,18 @@
+const playerOne = {
+  score: 0,
+  scoreText: document.querySelector("#playerOneScore"),
+  button: document.querySelector("#playerOneBtn"),
+};
+
+const playerTwo = {
+  score: 0,
+  scoreText: document.querySelector("#playerTwoScore"),
+  button: document.querySelector("#playerTwoBtn"),
+};
+
 const scoreHeader = document.querySelector("#scoreHeader");
-const playerOneScoreText = document.querySelector("#playerOneScore");
-const playerTwoScoreText = document.querySelector("#playerTwoScore");
-const winScoreSelect = document.querySelector("#winScoreSelect");
-const playerOneBtn = document.querySelector("#playerOneBtn");
-const playerTwoBtn = document.querySelector("#playerTwoBtn");
 const resetBtn = document.querySelector("#resetBtn");
 
-const playerOne = "PlayerOne";
-const playerTwo = "PlayerTwo";
-
-let playerOneScore = 0;
-let playerTwoScore = 0;
 let winScore = 3;
 
 winScoreSelect.addEventListener("change", (e) => {
@@ -25,61 +27,56 @@ resetBtn.addEventListener("click", onBtnClick);
 
 function onBtnClick(event) {
   if (event.target === resetBtn) {
-    restartGame();
-  } else if (event.target === playerOneBtn) {
-    if (playerOneScore >= winScore) return;
-    playerOneScore++;
-    updateScore();
-  } else if (event.target === playerTwoBtn) {
-    if (playerTwoScore >= winScore) return;
-    playerTwoScore++;
-    updateScore();
+    restartGame(playerOne, playerTwo);
+  } else if (event.target === playerOne.button) {
+    if (playerOne.score >= winScore) return;
+    playerOne.score++;
+    updateScore(playerOne, playerTwo);
+  } else if (event.target === playerTwo.button) {
+    if (playerTwo.score >= winScore) return;
+    playerTwo.score++;
+    updateScore(playerOne, playerTwo);
   } else {
     console.log("Unknown button click");
   }
 }
 
-function getWinner() {
-  if (playerOneScore >= winScore) {
-    return playerOne;
-  } else if (playerTwoScore >= winScore) {
-    return playerTwo;
+function getWinner(p1, p2) {
+  if (p1.score >= winScore) {
+    return [p1, p2];
+  } else if (p2.score >= winScore) {
+    return [p2, p1];
   } else {
     return null;
   }
 }
 
-function showWinner(player) {
-  if (player === playerOne) {
-    playerOneScoreText.style.color = "green";
-    playerTwoScoreText.style.color = "red";
-    playerOneBtn.setAttribute("disabled", "");
-    playerTwoBtn.setAttribute("disabled", "");
-  } else if (player === playerTwo) {
-    playerTwoScoreText.style.color = "green";
-    playerOneScoreText.style.color = "red";
-    playerOneBtn.setAttribute("disabled", "");
-    playerTwoBtn.setAttribute("disabled", "");
-  } else if (!player) {
-    return;
-  } else {
-    console.log("Unknown player winner");
-  }
+function showWinner(winner, loser) {
+  if (!winner || !loser) return;
+
+  winner.scoreText.style.color = "green";
+  loser.scoreText.style.color = "red";
+
+  winner.button.disabled = true;
+  loser.button.disabled = true;
 }
 
-function restartGame() {
-  playerOneScore = 0;
-  playerTwoScore = 0;
-  playerOneScoreText.textContent = playerOneScore;
-  playerTwoScoreText.textContent = playerTwoScore;
-  playerTwoScoreText.style.color = "black";
-  playerOneScoreText.style.color = "black";
-  playerOneBtn.removeAttribute("disabled");
-  playerTwoBtn.removeAttribute("disabled");
+function restartGame(p1, p2) {
+  p1.score = 0;
+  p1.scoreText.textContent = "0";
+  p1.scoreText.style.color = "black";
+
+  p2.score = 0;
+  p2.scoreText.textContent = "0";
+  p2.scoreText.style.color = "black";
+
+  p1.button.disabled = false;
+  p2.button.disabled = false;
 }
 
-function updateScore() {
-  playerOneScoreText.textContent = playerOneScore;
-  playerTwoScoreText.textContent = playerTwoScore;
-  showWinner(getWinner());
+function updateScore(p1, p2) {
+  p1.scoreText.textContent = playerOne.score;
+  p2.scoreText.textContent = playerTwo.score;
+  const winnerAndLoser = getWinner(p1, p2);
+  winnerAndLoser && showWinner(...winnerAndLoser);
 }
