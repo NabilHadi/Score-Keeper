@@ -23,6 +23,8 @@ playerOneBtn.addEventListener("click", () => {
   if (whoWon() === playerOne) {
     playerOneScoreText.style.color = "green";
     playerTwoScoreText.style.color = "red";
+    playerOneBtn.setAttribute("disabled", "");
+    playerTwoBtn.setAttribute("disabled", "");
   }
 });
 
@@ -33,6 +35,8 @@ playerTwoBtn.addEventListener("click", () => {
   if (whoWon() === playerTwo) {
     playerTwoScoreText.style.color = "green";
     playerOneScoreText.style.color = "red";
+    playerOneBtn.setAttribute("disabled", "");
+    playerTwoBtn.setAttribute("disabled", "");
   }
 });
 
@@ -43,6 +47,8 @@ resetBtn.addEventListener("click", () => {
   playerTwoScoreText.textContent = playerTwoScore;
   playerTwoScoreText.style.color = "black";
   playerOneScoreText.style.color = "black";
+  playerOneBtn.removeAttribute("disabled");
+  playerTwoBtn.removeAttribute("disabled");
 });
 
 
