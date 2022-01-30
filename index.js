@@ -5,6 +5,7 @@ const winScoreSelect = document.querySelector("#winScoreSelect");
 const playerOneBtn = document.querySelector("#playerOneBtn");
 const playerTwoBtn = document.querySelector("#playerTwoBtn");
 const resetBtn = document.querySelector("#resetBtn");
+
 const playerOne = "PlayerOne";
 const playerTwo = "PlayerTwo";
 
@@ -16,31 +17,57 @@ winScoreSelect.addEventListener("change", (e) => {
   winScore = e.target.value;
 });
 
-playerOneBtn.addEventListener("click", () => {
-  if (playerOneScore >= winScore) return;
-  playerOneScore++;
-  playerOneScoreText.textContent = playerOneScore;
-  if (whoWon() === playerOne) {
+playerOneBtn.addEventListener("click", onBtnClick);
+
+playerTwoBtn.addEventListener("click", onBtnClick);
+
+resetBtn.addEventListener("click", onBtnClick);
+
+function onBtnClick(event) {
+  if (event.target === resetBtn) {
+    restartGame();
+  } else if (event.target === playerOneBtn) {
+    if (playerOneScore >= winScore) return;
+    playerOneScore++;
+    updateScore();
+  } else if (event.target === playerTwoBtn) {
+    if (playerTwoScore >= winScore) return;
+    playerTwoScore++;
+    updateScore();
+  } else {
+    console.log("Unknown button click");
+  }
+}
+
+function getWinner() {
+  if (playerOneScore >= winScore) {
+    return playerOne;
+  } else if (playerTwoScore >= winScore) {
+    return playerTwo;
+  } else {
+    return null;
+  }
+}
+
+function showWinner(player) {
+  if (player === playerOne) {
     playerOneScoreText.style.color = "green";
     playerTwoScoreText.style.color = "red";
     playerOneBtn.setAttribute("disabled", "");
     playerTwoBtn.setAttribute("disabled", "");
-  }
-});
-
-playerTwoBtn.addEventListener("click", () => {
-  if (playerTwoScore >= winScore) return;
-  playerTwoScore++;
-  playerTwoScoreText.textContent = playerTwoScore;
-  if (whoWon() === playerTwo) {
+  } else if (player === playerTwo) {
     playerTwoScoreText.style.color = "green";
     playerOneScoreText.style.color = "red";
     playerOneBtn.setAttribute("disabled", "");
     playerTwoBtn.setAttribute("disabled", "");
+  } else if (!player) {
+    return;
+  } else {
+    console.log("Unknown player winner");
   }
-});
+}
 
-resetBtn.addEventListener("click", () => {
+function restartGame() {
   playerOneScore = 0;
   playerTwoScore = 0;
   playerOneScoreText.textContent = playerOneScore;
@@ -49,15 +76,10 @@ resetBtn.addEventListener("click", () => {
   playerOneScoreText.style.color = "black";
   playerOneBtn.removeAttribute("disabled");
   playerTwoBtn.removeAttribute("disabled");
-});
+}
 
-
-function whoWon() {
-  if (playerOneScore >= winScore) {
-    return playerOne;
-  } else if (playerTwoScore >= winScore) {
-    return playerTwo;
-  } else {
-    return null;
-  }
+function updateScore() {
+  playerOneScoreText.textContent = playerOneScore;
+  playerTwoScoreText.textContent = playerTwoScore;
+  showWinner(getWinner());
 }
