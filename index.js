@@ -14,7 +14,7 @@ let playerTwoScore = 0;
 let winScore = 3;
 
 winScoreSelect.addEventListener("change", (e) => {
-  winScore = e.target.value;
+  winScore = parseInt(e.target.value);
 });
 
 playerOneBtn.addEventListener("click", onBtnClick);
