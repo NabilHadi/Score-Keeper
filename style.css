@@ -30,24 +30,23 @@ img {
 	background-color: #f14668;
 }
 
-#main-container {
-	margin-top: 50px;
-}
-
 #main-container header {
 	height: 100%;
 	overflow: auto;
+	max-width: 500px;
+	max-height: auto;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 #main-container header img {
 	display: block;
-	width: 600px;
-	height: 300px;
+	max-width: 100%;
+	max-height: 400px;
+	object-fit: cover;
 }
 
 #main-container header h4 {
-	margin: 10px;
+	margin: 13px;
 	color: rgba(0, 0, 0, 0.8);
 }
 
